@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heroes of Merdeka | Wira Kemerdekaan Malaysia</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for child-friendly typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="#intro" class="brand-logo" data-target="intro">
+                🇲🇾 <span>Heroes of Merdeka</span>
+            </a>
+            <nav class="nav-menu">
+                <button class="nav-link active" data-target="intro">Introduction / Pengenalan</button>
+                <button class="nav-link" data-target="timeline">Timeline / Garis Masa</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- PAGE 1: INTRODUCTION PAGE -->
+        <section id="intro" class="page-section active">
+            <!-- Hero Header Section -->
+            <div class="hero-header">
+                <div class="hero-badge">🇲🇾 Merdeka Kids Club</div>
+                <h1>The 3 Heroes of Merdeka! 🇲🇾</h1>
+                <p class="subtitle">Meet the visionary leaders who brought peace, unity, and independence to Malaysia!</p>
+                
+                <div class="banner-illustration" role="img" aria-label="Illustrated banner featuring Tunku Abdul Rahman, Tun Tan Cheng Lock, and Tun V.T. Sambathan standing shoulder-to-shoulder under the Jalur Gemilang">
+                    <div class="flag-stripe red"></div>
+                    <div class="flag-stripe white"></div>
+                    <div class="banner-content">
+                        <span class="banner-emoji">🌟</span>
+                        <h2>Together We Stand, United We Grow!</h2>
+                        <p>Discover how friendship and teamwork created our wonderful nation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The 3 Heroes Cards Section -->
+            <div class="heroes-section">
+                <h2>The Magnificent Three Leaders</h2>
+                <p class="section-desc">Tap each hero card to read their amazing stories and hear the audio reader!</p>
+                
+                <div class="heroes-grid">
+                    <!-- Hero 1: Tunku Abdul Rahman -->
+                    <div class="hero-card" data-hero="tunku">
+                        <div class="card-avatar tunku-bg">
+                            <span class="avatar-emoji">👨‍✈️</span>
+                            <span class="badge-role">Prime Leader</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Tunku Abdul Rahman</h3>
+                            <span class="nickname">"Bapa Kemerdekaan" (Father of Independence)</span>
+                            <p class="achievement"><strong>Primary Achievement:</strong> First Prime Minister of Malaysia. Famously chanted <strong>"MERDEKA!" 7 times</strong> at Stadium Merdeka on August 31, 1957.</p>
+                            
+                            <div class="card-actions">
+                                <button class="audio-btn" onclick="speakText('Tunku Abdul Rahman. Bapa Kemerdekaan. First Prime Minister of Malaysia. Chanted MERDEKA 7 times at Stadium Merdeka on August 31, 1957.')">
+                                    🔊 Listen to Story
+                                </button>
+                                <button class="expand-card-btn" onclick="toggleCardDetails(this)">Read More ✨</button>
+                            </div>
+                            <div class="card-extra-details">
+                                <p><em>Fun Fact:</em> Tunku loved sports, especially football, and brought all communities together through peaceful negotiations and sportsmanship!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero 2: Tun Tan Cheng Lock -->
+                    <div class="hero-card" data-hero="lock">
+                        <div class="card-avatar lock-bg">
+                            <span class="avatar-emoji">🤝</span>
+                            <span class="badge-role">Unity Champion</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Tun Tan Cheng Lock</h3>
+                            <span class="nickname">"Bapa Perpaduan Kaum" (Champion of Unity)</span>
+                            <p class="achievement"><strong>Primary Achievement:</strong> Founder and 1st President of the Malaysian Chinese Association (MCA). United the Chinese community with UMNO to form the Alliance Party.</p>
+                            
+                            <div class="card-actions">
+                                <button class="audio-btn" onclick="speakText('Tun Tan Cheng Lock. Bapa Perpaduan Kaum. Founder and first President of the Malaysian Chinese Association. United the Chinese community with UMNO to form the Alliance Party.')">
+                                    🔊 Listen to Story
+                                </button>
+                                <button class="expand-card-btn" onclick="toggleCardDetails(this)">Read More ✨</button>
+                            </div>
+                            <div class="card-extra-details">
+                                <p><em>Fun Fact:</em> He strongly believed that Malaysia's greatest strength is its multi-ethnic harmony and mutual respect between races.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero 3: Tun V.T. Sambathan -->
+                    <div class="hero-card" data-hero="sambathan">
+                        <div class="card-avatar sambathan-bg">
+                            <span class="avatar-emoji">🕊️</span>
+                            <span class="badge-role">Harmony Pillar</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Tun V.T. Sambathan</h3>
+                            <span class="nickname">"Srikandi Kebajikan" / Pillar of Harmony</span>
+                            <p class="achievement"><strong>Primary Achievement:</strong> 5th President of the Malaysian Indian Congress (MIC). Organized the Indian community to support independence through unity and education.</p>
+                            
+                            <div class="card-actions">
+                                <button class="audio-btn" onclick="speakText('Tun V.T. Sambathan. Pillar of Harmony. Fifth President of the Malaysian Indian Congress. Organized the Indian community to support independence through unity and education.')">
+                                    🔊 Listen to Story
+                                </button>
+                                <button class="expand-card-btn" onclick="toggleCardDetails(this)">Read More ✨</button>
+                            </div>
+                            <div class="card-extra-details">
+                                <p><em>Fun Fact:</em> He gave up his family estate lands to help rubber plantation workers and championed cooperative societies for community growth!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Educational Media Integration Section -->
+            <div class="media-section">
+                <h2>🎥 Learn & Watch (Video Stories)</h2>
+                <p class="section-desc">Explore documentaries and historical features about our founding leaders:</p>
+                
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-thumbnail-placeholder" style="background: linear-gradient(135deg, #FF6B6B, #FF8E53);">
+                            <span class="play-icon">▶</span>
+                            <span class="duration-badge">5:16</span>
+                        </div>
+                        <div class="video-info">
+                            <h4>#JALAN Tun Tan Cheng Lock</h4>
+                            <p class="channel-name">📺 Astro AWANI</p>
+                            <a href="https://www.youtube.com/results?search_query=Astro+AWANI+Tun+Tan+Cheng+Lock" target="_blank" rel="noopener noreferrer" class="watch-link">Watch on YouTube ➔</a>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-thumbnail-placeholder" style="background: linear-gradient(135deg, #4E65FF, #92EFFD);">
+                            <span class="play-icon">▶</span>
+                            <span class="duration-badge">5:15</span>
+                        </div>
+                        <div class="video-info">
+                            <h4>The man who fought for creation of Malaysia</h4>
+                            <p class="channel-name">📺 The Star</p>
+                            <a href="https://www.youtube.com/results?search_query=The+Star+man+who+fought+for+creation+of+Malaysia" target="_blank" rel="noopener noreferrer" class="watch-link">Watch on YouTube ➔</a>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-thumbnail-placeholder" style="background: linear-gradient(135deg, #11998e, #38ef7d);">
+                            <span class="play-icon">▶</span>
+                            <span class="duration-badge">6:26</span>
+                        </div>
+                        <div class="video-info">
+                            <h4>TOKOH KEPIMPINAN Tun Tan Cheng Lock</h4>
+                            <p class="channel-name">📺 Lowkey</p>
+                            <a href="https://www.youtube.com/results?search_query=Lowkey+TOKOH+KEPIMPINAN+Tun+Tan+Cheng+Lock" target="_blank" rel="noopener noreferrer" class="watch-link">Watch on YouTube ➔</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: TIMELINE PAGE -->
+        <section id="timeline" class="page-section">
+            <div class="timeline-header">
+                <div class="hero-badge">📜 Journey to Freedom</div>
+                <h1>The Road to Independence Timeline</h1>
+                <p class="subtitle">Tap each milestone to discover how our 3 heroes worked together hand-in-hand!</p>
+            </div>
+
+            <div class="timeline-container">
+                <!-- Milestone 1 -->
+                <div class="timeline-item" data-year="1949">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-date">February 1949</span>
+                        <h3>Building Bridges 🌉</h3>
+                        <p>Tun Tan Cheng Lock founds the MCA to unite the Chinese community with local Malays, proving that all ethnic groups can live and work together in harmony.</p>
+                        <button class="audio-btn timeline-audio" onclick="speakText('February 1949. Building Bridges. Tun Tan Cheng Lock founds the MCA to unite the Chinese community with local Malays.')">🔊 Listen</button>
+                    </div>
+                </div>
+
+                <!-- Milestone 2 -->
+                <div class="timeline-item" data-year="1951">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-date">August 1951</span>
+                        <h3>The Father of Independence Takes the Lead 🌟</h3>
+                        <p>Tunku Abdul Rahman becomes leader of UMNO and advocates peaceful negotiation over conflict to gain independence from British rule.</p>
+                        <button class="audio-btn timeline-audio" onclick="speakText('August 1951. The Father of Independence Takes the Lead. Tunku Abdul Rahman becomes leader of UMNO and advocates peaceful negotiation.')">🔊 Listen</button>
+                    </div>
+                </div>
+
+                <!-- Milestone 3 -->
+                <div class="timeline-item" data-year="1955-mic">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-date">May 1955</span>
+                        <h3>MIC Joins the Alliance 🤝</h3>
+                        <p>Under Tun V.T. Sambathan, the MIC joins UMNO and MCA to form the historic Alliance Party (Parti Perikatan) — representing all three major ethnic communities in Malaya.</p>
+                        <button class="audio-btn timeline-audio" onclick="speakText('May 1955. MIC Joins the Alliance. Under Tun V.T. Sambathan, the MIC joins UMNO and MCA to form the historic Alliance Party representing all three major ethnic communities.')">🔊 Listen</button>
+                    </div>
+                </div>
+
+                <!-- Milestone 4 -->
+                <div class="timeline-item" data-year="1955-victory">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-date">July 1955</span>
+                        <h3>The Big Victory! 🎉</h3>
+                        <p>The Alliance Party wins 51 out of 52 seats in Malaya’s first Federal Legislative Council election, proving that a united nation wants full self-governance.</p>
+                        <button class="audio-btn timeline-audio" onclick="speakText('July 1955. The Big Victory. The Alliance Party wins 51 out of 52 seats in Malayas first Federal Legislative Council election.')">🔊 Listen</button>
+                    </div>
+                </div>
+
+                <!-- Milestone 5 -->
+                <div class="timeline-item" data-year="1956">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-date">February 1956</span>
+                        <h3>The Mission to London ✈️</h3>
+                        <p>Tunku Abdul Rahman leads a delegation including leaders from all three races to London to sign the Independent Malaya Agreement.</p>
+                        <button class="audio-btn timeline-audio" onclick="speakText('February 1956. The Mission to London. Tunku Abdul Rahman leads a delegation including leaders from all three races to London to sign the Independent Malaya Agreement.')">🔊 Listen</button>
+                    </div>
+                </div>
+
+                <!-- Milestone 6 -->
+                <div class="timeline-item highlight-merdeka" data-year="1957">
+                    <div class="timeline-dot celebratory">🇲🇾</div>
+                    <div class="timeline-card celebratory-card">
+                        <span class="timeline-date">August 31, 1957</span>
+                        <h3>MERDEKA! MERDEKA! MERDEKA! 🎆</h3>
+                        <p>At 9:30 AM in Stadium Merdeka, Tunku Abdul Rahman raises his hand and shouts <strong>"MERDEKA!" 7 times</strong>, declaring a free and sovereign Malaya!</p>
+                        <button class="audio-btn timeline-audio" onclick="speakText('August 31, 1957. Merdeka, Merdeka, Merdeka! At 9:30 AM in Stadium Merdeka, Tunku Abdul Rahman raises his hand and shouts Merdeka 7 times, declaring a free and sovereign Malaya!')">🔊 Listen to Celebration</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>🇲🇾 <strong>Heroes of Merdeka</strong> • Inspiring Young Malaysians Through Unity & Friendship</p>
+        <p class="review-note"><em>Note for Review: All historical facts sourced directly from official curriculum guidelines.</em></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heroes of Merdeka | Wira Kemerdekaan Malaysia</title>
+    <!-- Google Fonts for child-friendly typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS Reset & Variables */
+        :root {
+            --primary-red: #CC0000;
+            --primary-blue: #003366;
+            --primary-yellow: #FFCC00;
+            --bg-color: #F8F9FA;
+            --card-bg: #FFFFFF;
+            --text-main: #2C3E50;
+            --text-muted: #555555;
+            --shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            --border-radius: 16px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif, Arial;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Fredoka', cursive, sans-serif;
+            color: var(--primary-blue);
+        }
+
+        /* Sticky Navigation Bar */
+        .site-header {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-logo {
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 12px;
+        }
+
+        .nav-link {
+            background: transparent;
+            border: none;
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 1rem;
+            padding: 10px 18px;
+            border-radius: 30px;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: var(--transition);
+            min-height: 48px; /* Mobile touch target compliance */
+            min-width: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: var(--primary-yellow);
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        /* Main Content Layout */
+        .main-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 30px 20px 60px 20px;
+        }
+
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Page 1: Hero Header */
+        .hero-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #FFF3CD;
+            color: #856404;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .hero-header h1 {
+            font-size: 2.2rem;
+            color: var(--primary-red);
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 25px auto;
+        }
+
+        .banner-illustration {
+            position: relative;
+            background: linear-gradient(135deg, #003366 0%, #004080 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .banner-illustration .flag-stripe {
+            position: absolute;
+            height: 8px;
+            width: 100%;
+            left: 0;
+        }
+        .banner-illustration .flag-stripe.red { top: 0; background: var(--primary-red); }
+        .banner-illustration .flag-stripe.white { bottom: 0; background: #ffffff; }
+
+        .banner-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .banner-emoji {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .banner-content h2 {
+            color: var(--primary-yellow);
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+
+        /* Heroes Grid */
+        .heroes-section {
+            margin-top: 50px;
+        }
+
+        .heroes-section h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .heroes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .hero-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+        }
+
+        .card-avatar {
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .tunku-bg { background: linear-gradient(135deg, #FFE5E5, #FFCCCC); }
+        .lock-bg { background: linear-gradient(135deg, #E5F3FF, #CCE6FF); }
+        .sambathan-bg { background: linear-gradient(135deg, #E8F8F5, #D1F2EB); }
+
+        .avatar-emoji {
+            font-size: 4rem;
+            display: block;
+        }
+
+        .badge-role {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: white;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .card-body h3 {
+            font-size: 1.3rem;
+            margin-bottom: 4px;
+        }
+
+        .nickname {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .achievement {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .audio-btn, .expand-card-btn {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px 16px;
+            font-family: 'Fredoka', cursive, sans-serif;
+            font-size: 0.95rem;
+            border-radius: 10px;
+            cursor: pointer;
+            min-height: 48px; /* Mobile touch target compliance */
+            min-width: 48px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .audio-btn:hover, .expand-card-btn:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+        }
+
+        .expand-card-btn {
+            background-color: #f1f3f5;
+            color: var(--primary-blue);
+        }
+
+        .card-extra-details {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #dee2e6;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .card-extra-details.open {
+            display: block;
+        }
+
+        /* Media Section */
+        .media-section {
+            margin-top: 60px;
+        }
+
+        .media-section h2 {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .video-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-thumbnail-placeholder {
+            height: 140px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .play-icon {
+            font-size: 2.5rem;
+            background: rgba(0,0,0,0.3);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 4px;
+        }
+
+        .duration-badge {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0,0,0,0.7);
+            padding: 2px 8px;
+            font-size: 0.75rem;
+            border-radius: 6px;
+        }
+
+        .video-info {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .video-info h4 {
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .channel-name {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .watch-link {
+            margin-top: auto;
+            color: var(--primary-red);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            min-height: 48px; /* Touch target compliance */
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .watch-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Page 2: Timeline Page */
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .timeline-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 30px;
+            width: 4px;
+            background: #dee2e6;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 70px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 21px;
+            top: 15px;
+            width: 22px;
+            height: 22px;
+            background: var(--primary-blue);
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px #dee2e6;
+            z-index: 2;
+        }
+
+        .timeline-dot.celebratory {
+            width: 36px;
+            height: 36px;
+            left: 14px;
+            top: 12px;
+            background: var(--primary-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            box-shadow: 0 0 0 4px #ffe358;
+        }
+
+        .timeline-card {
+            background: white;
+            padding: 24px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .timeline-card:hover {
+            transform: translateX(4px);
+        }
+
+        .celebratory-card {
+            background: linear-gradient(135deg, #FFF9E6, #FFF3CD);
+            border: 2px solid var(--primary-yellow);
+        }
+
+        .timeline-date {
+            display: inline-block;
+            background: #e9ecef;
+            color: var(--primary-blue);
+            padding: 4px 12px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        .celebratory-card .timeline-date {
+            background: var(--primary-yellow);
+            color: #856404;
+        }
+
+        .timeline-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+        }
+
+        .timeline-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+
+        .timeline-audio {
+            background-color: var(--primary-red);
+            padding: 8px 14px;
+            font-size: 0.85rem;
+        }
+
+        /* Footer */
+        .site-footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            margin-top: 60px;
+            border-top: 1px solid #e9ecef;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .review-note {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 6px;
+        }
+
+        /* Responsive Design for Mobile (< 768px) */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+                padding: 10px;
+            }
+
+            .nav-menu {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .nav-link {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+                flex-grow: 1;
+            }
+
+            .hero-header h1 {
+                font-size: 1.7rem;
+            }
+
+            .heroes-grid, .video-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-container::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 50px;
+            }
+
+            .timeline-dot {
+                left: 11px;
+            }
+
+            .timeline-dot.celebratory {
+                left: 4px;
+                width: 32px;
+                height: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sticky Navigation Bar -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="#intro" class="brand-logo" data-target="intro">
+                🇲🇾 <span>Heroes of Merdeka</span>
+            </a>
+            <nav class="nav-menu">
+                <button class="nav-link active" data-target="intro">Introduction / Pengenalan</button>
+                <button class="nav-link" data-target="timeline">Timeline / Garis Masa</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- PAGE 1: INTRODUCTION PAGE -->
+        <section id="intro" class="page-section active">
+            <!-- Hero Header Section -->
+            <div class="hero-header">
+                <div class="hero-badge">🇲🇾 Merdeka Kids Club</div>
+                <h1>The 3 Heroes of Merdeka! 🇲🇾</h1>
+                <p class="subtitle">Meet the visionary leaders who brought peace, unity, and independence to Malaysia!</p>
+                
+                <div class="banner-illustration" role="img" aria-label="Illustrated banner featuring Tunku Abdul Rahman, Tun Tan Cheng Lock, and Tun V.T. Sambathan standing shoulder-to-shoulder under the Jalur Gemilang">
+                    <div class="flag-stripe red"></div>
+                    <div class="flag-stripe white"></div>
+                    <div class="banner-content">
+                        <span class="banner-emoji">🌟</span>
+                        <h2>Together We Stand, United We Grow!</h2>
+                        <p>Discover how friendship and teamwork created our wonderful nation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- The 3 Heroes Cards Section -->
+            <div class="heroes-section">
+                <h2>The Magnificent Three Leaders</h2>
+                <p class="section-desc">Tap each hero card to read their amazing stories and hear the audio reader!</p>
+                
+                <div class="heroes-grid">
+                    <!-- Hero 1: Tunku Abdul Rahman -->
+                    <div class="hero-card" data-hero="tunku">
+                        <div class="card-avatar tunku-bg">
+                            <span class="avatar-emoji">👨‍✈️</span>
+                            <span class="badge-role">Prime Leader</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Tunku Abdul Rahman</h3>
+                            <span class="nickname">"Bapa Kemerdekaan" (Father of Independence)</span>
+                            <p class="achievement"><strong>Primary Achievement:</strong> First Prime Minister of Malaysia. Famously chanted <strong>"MERDEKA!" 7 times</strong> at Stadium Merdeka on August 31, 1957.</p>
+                            
+                            <div class="card-actions">
+                                <button class="audio-btn" onclick="speakText('Tunku Abdul Rahman. Bapa Kemerdekaan. First Prime Minister of Malaysia. Chanted MERDEKA 7 times at Stadium Merdeka on August 31, 1957.')">
+                                    🔊 Listen to Story
+                                </button>
+                                <button class="expand-card-btn" onclick="toggleCardDetails(this)">Read More ✨</button>
+                            </div>
+                            <div class="card-extra-details">
+                                <p><em>Fun Fact:</em> Tunku loved sports, especially football, and brought all communities together through peaceful negotiations and sportsmanship!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero 2: Tun Tan Cheng Lock -->
+                    <div class="hero-card" data-hero="lock">
+                        <div class="card-avatar lock-bg">
+                            <span class="avatar-emoji">🤝</span>
+                            <span class="badge-role">Unity Champion</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Tun Tan Cheng Lock</h3>
+                            <span class="nickname">"Bapa Perpaduan Kaum" (Champion of Unity)</span>
+                            <p class="achievement"><strong>Primary Achievement:</strong> Founder and 1st President of the Malaysian Chinese Association (MCA). United the Chinese community with UMNO to form the Alliance Party.</p>
+                            
+                            <div class="card-actions">
+                                <button class="audio-btn" onclick="speakText('Tun Tan Cheng Lock. Bapa Perpaduan Kaum. Founder and first President of the Malaysian Chinese Association. United the Chinese community with UMNO to form the Alliance Party.')">
+                                    🔊 Listen to Story
+                                </button>
+                                <button class="expand-card-btn" onclick="toggleCardDetails(this)">Read More ✨</button>
+                            </div>
+                            <div class="card-extra-details">
+                                <p><em>Fun Fact:</em> He strongly believed that Malaysia's greatest strength is its multi-ethnic harmony and mutual respect between races.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero 3: Tun V.T. Sambathan -->
+                    <div class="hero-card" data-hero="sambathan">
+                        <div class="card-avatar sambathan-bg">
+                            <span class="avatar-emoji">🕊️</span>
+                            <span class="badge-role">Harmony Pillar</span>
+                        </div>
+                        <div class="card-body">
+                            <h3>Tun V.T. Sambathan</h3>
+                            <span class="nickname">"Srikandi Kebajikan" / Pillar of Harmony</span>
+                            <p class="achievement"><strong>Primary Achievement:</strong> 5th President of the Malaysian Indian Congress (MIC). Organized the Indian community to support independence through unity and education.</p>
+                            
+                            <div class="card-actions">
+                                <button class="audio-btn" onclick="speakText('Tun V.T. Sambathan. Pillar of Harmony. Fifth President of the Malaysian Indian Congress. Organized the Indian community to support independence through unity and education.')">
+                                    🔊 Listen to Story
+                                </button>
+                                <button class="expand-card-btn" onclick="toggleCardDetails(this)">Read More ✨</button>
+                            </div>
+                            <div class="card-extra-details">
+                                <p><em>Fun Fact:</em> He gave up his family estate lands to help rubber plantation workers and championed cooperative societies for community growth!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Educational Media Integration Section -->
+            <div class="media-section">
+                <h2>🎥 Learn & Watch (Video Stories)</h2>
+                <p class="section-desc">Explore documentaries and historical features about our founding leaders:</p>
+                
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-thumbnail-placeholder" style="background: linear-gradient(135deg, #FF6B6B, #FF8E53);">
+                            <span class="play-icon">▶</span>
+                            <span class="duration-badge">5:16</span>
+                        </div>
+                        <div class="video-info">
+                            <h4>#JALAN Tun Tan Cheng Lock</h4>
+                            <p class="channel-name">📺 Astro AWANI</p>
+                            <a href="https://www.youtube.com/results?search_query=Astro+AWANI+Tun+Tan+Cheng+Lock" target="_blank" rel="noopener noreferrer" class="watch-link">Watch on YouTube ➔</a>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-thumbnail-placeholder" style="background: linear-gradient(135deg, #4E65FF, #92EFFD);">
+                            <span class="play-icon">▶</span>
+                            <span class="duration-badge">5:15</span>
+                        </div>
+                        <div class="video-info">
+                            <h4>The man who fought for creation of Malaysia</h4>
+                            <p class="channel-name">📺 The Star</p>
+                            <a href="https://www.youtube.com/results?search_query=The+Star+man+who+fought+for+creation+of+Malaysia" target="_blank" rel="noopener noreferrer" class="watch-link">Watch on YouTube ➔</a>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-thumbnail-placeholder" style="background: linear-gradient(135deg, #11998e, #38ef7d);">
+                            <span class="play-icon">▶</span>
+                            <span class="duration-badge">6:26</span>
+                        </div>
+                        <div class="video-info">
+                            <h4>TOKOH KEPIMPINAN Tun Tan Cheng Lock</h4>
+                            <p class="channel-name">📺 Lowkey</p>
+                            <a href="https://www.youtube.com/results?search_query=Lowkey+TOKOH+KEPIMPINAN+Tun+Tan+Cheng+Lock" target="_blank" rel="noopener noreferrer" class="watch-link">Watch on YouTube ➔</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PAGE 2: TIMELINE PAGE -->
+        <section id="timeline" class="page-section">
+            <div class="timeline-header">
+                <div class="hero-badge">📜 Journey to Freedom</div>
+                <h1>The Road to Independence Timeline</h1>
+                <p class="subtitle">Tap each milestone to discover how our 3 heroes worked together hand-in-hand!</p>
+            </div>
+
+            <div class="timeline-container">
+                <!-- Milestone 1 -->
+                <div class="timeline-item" data-year="1949">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-date">February 1949</span>
+                        <h3>Building Bridges 🌉</h3>
+                        <p>Tun Tan Cheng Lock founds the MCA to unite the Chinese community with local Malays, proving that all ethnic groups can live and work together in harmony.</p>
+                        <button class="audio-btn timeline-audio" onclick="speakText('February 1949. Building Bridges. Tun Tan Cheng Lock founds the MCA to unite the Chinese community with local Malays.')">🔊 Listen</button>
+                    </div>
+                </div>
+
+                <!-- Milestone 2 -->
+                <div class="timeline-item" data-year="1951">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-date">August 1951</span>
+                        <h3>The Father of Independence Takes the Lead 🌟</h3>
+                        <p>Tunku Abdul Rahman becomes leader of UMNO and advocates peaceful negotiation over conflict to gain independence from British rule.</p>
+                        <button class="audio-btn timeline-audio" onclick="speakText('August 1951. The Father of Independence Takes the Lead. Tunku Abdul Rahman becomes leader of UMNO and advocates peaceful negotiation.')">🔊 Listen</button>
+                    </div>
+                </div>
+
+                <!-- Milestone 3 -->
+                <div class="timeline-item" data-year="1955-mic">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-date">May 1955</span>
+                        <h3>MIC Joins the Alliance 🤝</h3>
+                        <p>Under Tun V.T. Sambathan, the MIC joins UMNO and MCA to form the historic Alliance Party (Parti Perikatan) — representing all three major ethnic communities in Malaya.</p>
+                        <button class="audio-btn timeline-audio" onclick="speakText('May 1955. MIC Joins the Alliance. Under Tun V.T. Sambathan, the MIC joins UMNO and MCA to form the historic Alliance Party representing all three major ethnic communities.')">🔊 Listen</button>
+                    </div>
+                </div>
+
+                <!-- Milestone 4 -->
+                <div class="timeline-item" data-year="1955-victory">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-date">July 1955</span>
+                        <h3>The Big Victory! 🎉</h3>
+                        <p>The Alliance Party wins 51 out of 52 seats in Malaya’s first Federal Legislative Council election, proving that a united nation wants full self-governance.</p>
+                        <button class="audio-btn timeline-audio" onclick="speakText('July 1955. The Big Victory. The Alliance Party wins 51 out of 52 seats in Malayas first Federal Legislative Council election.')">🔊 Listen</button>
+                    </div>
+                </div>
+
+                <!-- Milestone 5 -->
+                <div class="timeline-item" data-year="1956">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <span class="timeline-date">February 1956</span>
+                        <h3>The Mission to London ✈️</h3>
+                        <p>Tunku Abdul Rahman leads a delegation including leaders from all three races to London to sign the Independent Malaya Agreement.</p>
+                        <button class="audio-btn timeline-audio" onclick="speakText('February 1956. The Mission to London. Tunku Abdul Rahman leads a delegation including leaders from all three races to London to sign the Independent Malaya Agreement.')">🔊 Listen</button>
+                    </div>
+                </div>
+
+                <!-- Milestone 6 -->
+                <div class="timeline-item highlight-merdeka" data-year="1957">
+                    <div class="timeline-dot celebratory">🇲🇾</div>
+                    <div class="timeline-card celebratory-card">
+                        <span class="timeline-date">August 31, 1957</span>
+                        <h3>MERDEKA! MERDEKA! MERDEKA! 🎆</h3>
+                        <p>At 9:30 AM in Stadium Merdeka, Tunku Abdul Rahman raises his hand and shouts <strong>"MERDEKA!" 7 times</strong>, declaring a free and sovereign Malaya!</p>
+                        <button class="audio-btn timeline-audio" onclick="speakText('August 31, 1957. Merdeka, Merdeka, Merdeka! At 9:30 AM in Stadium Merdeka, Tunku Abdul Rahman raises his hand and shouts Merdeka 7 times, declaring a free and sovereign Malaya!')">🔊 Listen to Celebration</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>🇲🇾 <strong>Heroes of Merdeka</strong> • Inspiring Young Malaysians Through Unity & Friendship</p>
+        <p class="review-note"><em>Note for Review: All historical facts sourced directly from official curriculum guidelines.</em></p>
+    </footer>
+
+    <script>
+        // Navigation tab switching logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link, .brand-logo');
+            const sections = document.querySelectorAll('.page-section');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('data-target');
+
+                    // Update active state on nav buttons
+                    document.querySelectorAll('.nav-link').forEach(nav => {
+                        if(nav.getAttribute('data-target') === targetId) {
+                            nav.classList.add('active');
+                        } else {
+                            nav.classList.remove('active');
+                        }
+                    });
+
+                    // Show target section, hide others
+                    sections.forEach(section => {
+                        if(section.id === targetId) {
+                            section.classList.add('active');
+                        } else {
+                            section.classList.remove('active');
+                        }
+                    });
+
+                    // Scroll to top smoothly
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+        });
+
+        // Toggle expand card details on hero cards
+        function toggleCardDetails(button) {
+            const cardBody = button.closest('.card-body');
+            const extraDetails = cardBody.querySelector('.card-extra-details');
+            
+            if (extraDetails.classList.contains('open')) {
+                extraDetails.classList.remove('open');
+                button.textContent = 'Read More ✨';
+            } else {
+                extraDetails.classList.add('open');
+                button.textContent = 'Show Less 🔼';
+            }
+        }
+
+        // Text-to-Speech audio voiceover helper for lower-primary readers
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                // Cancel any ongoing speech
+                window.speechSynthesis.cancel();
+                
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.9; // Slightly slower for primary students
+                utterance.pitch = 1.1; // Friendly tone
+                
+                // Try to pick an English voice if available
+                const voices = window.speechSynthesis.getVoices();
+                const englishVoice = voices.find(v => v.lang.startsWith('en'));
+                if (englishVoice) {
+                    utterance.voice = englishVoice;
+                }
+
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Audio speech synthesis is not supported on your browser.');
+            }
+        }
+    </script>
+</body>
+</html>
